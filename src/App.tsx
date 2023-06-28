@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ReduxProvider from "./store/provider/ReduxProvider";
+import { CssBaseline } from "@mui/material";
+import { BrowserRouter } from "react-router-dom";
+import RenderRoutes from "./routes/RenderRoutes";
+import { AppContainer } from "./styles/styles";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <ReduxProvider>
+            <CssBaseline/>
+            <Navbar/>
+            <AppContainer>
+                <BrowserRouter>
+                    <RenderRoutes/>
+                </BrowserRouter>
+            </AppContainer>
+            <Footer/>
+        </ReduxProvider>
+    );
+};
 
 export default App;
