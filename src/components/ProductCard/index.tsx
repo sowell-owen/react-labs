@@ -3,17 +3,20 @@ import { Card, CardContent, CardMedia, Typography, Button } from '@mui/material'
 import { Product } from "../../types/product";
 import { useAppDispatch } from "../../store/hooks";
 import { addToCart } from "../../store/cart/cartSlice";
+import { useNavigate } from 'react-router-dom'
 
 const ProductCard: React.FC<Product> = (props) => {
+    const navigate = useNavigate()
     const dispatch = useAppDispatch();
 
     const handleAddToCartClick = () => dispatch(addToCart(props));
 
 
-    const { name, description, img, price } = props;
+    const { name, description, img, price, id } = props;
     return (
         <Card>
             <CardMedia
+                onClick={() => navigate(`product/${id}`)}
                 component="img"
                 height="200"
                 image={img}

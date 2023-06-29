@@ -1,0 +1,1 @@
+export const USD_IN_UAH = 36.95;

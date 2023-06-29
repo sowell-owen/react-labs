@@ -1,6 +1,6 @@
 import React from 'react';
-import { PageContainer } from "../styles/styles";
-import ProductsList from "../components/ProductsList";
+import { PageContainer } from "../../styles/styles";
+import ProductsList from "../../components/ProductsList";
 
 const Home = () => {
     return (

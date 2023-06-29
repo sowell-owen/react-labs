@@ -35,7 +35,7 @@ const ProductList: React.FC = () => {
 
     return (
         <>
-            <FormControl style={{marginBottom: '20px'}}>
+            <FormControl style={{ marginBottom: '20px' }}>
                 <InputLabel>Category</InputLabel>
                 <Select
                     value={currentCategory}
@@ -53,7 +53,7 @@ const ProductList: React.FC = () => {
                     </Grid>
                 ))}
             </Grid>
-            <Typography style={{margin: '20px 0'}} variant="body2" color="textSecondary">
+            <Typography style={{ margin: '20px 0' }} variant="body2" color="textSecondary">
                 Total products: {filteredProducts.length}
             </Typography>
         </>
