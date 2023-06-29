@@ -5,6 +5,7 @@ import axios from 'axios';
 import ProductCard from '../ProductCard';
 import { Product } from "../../types/product";
 import { productsMock } from "../../mock/products-mock";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 enum Categories {
     ALL = 'ALL',
@@ -46,13 +47,19 @@ const ProductList: React.FC = () => {
                     <MenuItem value={Categories.UNDER_1000}>Under 1000$</MenuItem>
                 </Select>
             </FormControl>
-            <Grid container spacing={2}>
-                {filteredProducts.map(product => (
-                    <Grid item xs={12} sm={6} md={4} key={product.name}>
-                        <ProductCard {...product} />
-                    </Grid>
-                ))}
-            </Grid>
+            <TransitionGroup>
+                <Grid container spacing={2}>
+                    {filteredProducts.map(product => (
+                        <CSSTransition key={product.id}
+                                       classNames="product-item"
+                                       timeout={500}>
+                            <Grid item xs={12} sm={6} md={4}>
+                                <ProductCard {...product} />
+                            </Grid>
+                        </CSSTransition>
+                    ))}
+                </Grid>
+            </TransitionGroup>
             <Typography style={{ margin: '20px 0' }} variant="body2" color="textSecondary">
                 Total products: {filteredProducts.length}
             </Typography>
