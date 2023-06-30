@@ -46,6 +46,12 @@ const cartSlice = createSlice({
             } else {
                 changeQuantity(state, action.payload.id, false);
             }
+        },
+        sortLowToHighPrice: (state) => {
+            state.products.sort((a, b) => b.price - a.price);
+        },
+        sortHighToLowPrice: (state) => {
+            state.products.sort((a, b) => a.price - b.price);
         }
     }
 })

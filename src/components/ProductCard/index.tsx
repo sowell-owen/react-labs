@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
 import { Product } from "../../types/product";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useProductsInCartQuantity } from "../../store/hooks";
 import { addToCart } from "../../store/cart/cartSlice";
 import { useNavigate } from 'react-router-dom'
 
 const ProductCard: React.FC<Product> = (props) => {
     const navigate = useNavigate()
     const dispatch = useAppDispatch();
+    const inCartQuantity = useProductsInCartQuantity();
 
     const handleAddToCartClick = () => dispatch(addToCart(props));
+
+    function sleep(ms: number) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    useEffect(() => {
+        console.log('Products in cart: ', inCartQuantity);
+        sleep(3000)
+            .then(() => {
+                handleAddToCartClick();
+                console.log('Products in cart (after adding): ', inCartQuantity);
+            })
+    }, []);
 
 
     const { name, description, img, price, id } = props;
